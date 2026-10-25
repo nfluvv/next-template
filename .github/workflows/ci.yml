@@ -47,18 +47,18 @@ jobs:
       - name: Push schema to test DB
         run: npx prisma db push
         env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/app_db
+          DATABASE_URL: ${{ secrets.CI_DATABASE_URL }}
 
       - name: Build
         run: npm run build
         env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/app_db
-          AUTH_SECRET: test-secret-for-ci-only-not-real
-          AUTH_GITHUB_ID: test
-          AUTH_GITHUB_SECRET: test
-          AUTH_GOOGLE_ID: test
-          AUTH_GOOGLE_SECRET: test
-          RESEND_API_KEY: re_test
-          MAIL_PROVIDER: console
-          TWO_FACTOR_ENCRYPTION_KEY: 0000000000000000000000000000000000000000000000000000000000000000
-          NEXTAUTH_URL: http://localhost:3000
+          DATABASE_URL: ${{ secrets.CI_DATABASE_URL }}
+          AUTH_SECRET: ${{ secrets.CI_AUTH_SECRET }}
+          AUTH_GITHUB_ID: ${{ secrets.CI_AUTH_GITHUB_ID }}
+          AUTH_GITHUB_SECRET: ${{ secrets.CI_AUTH_GITHUB_SECRET }}
+          AUTH_GOOGLE_ID: ${{ secrets.CI_AUTH_GOOGLE_ID }}
+          AUTH_GOOGLE_SECRET: ${{ secrets.CI_AUTH_GOOGLE_SECRET }}
+          RESEND_API_KEY: ${{ secrets.CI_RESEND_API_KEY }}
+          MAIL_PROVIDER: ${{ secrets.CI_MAIL_PROVIDER }}
+          TWO_FACTOR_ENCRYPTION_KEY: ${{ secrets.CI_TWO_FACTOR_ENCRYPTION_KEY }}
+          NEXTAUTH_URL: ${{ secrets.CI_NEXTAUTH_URL }}
